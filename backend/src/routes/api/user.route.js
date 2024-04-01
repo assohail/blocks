@@ -11,7 +11,7 @@ const awaitHandlerFactory = require('../../middleware/awaitHandlerFactory.middle
 const { createUserSchema, updateUserSchema, updatePasswordSchema, validateLogin, validateEmail} = require('../../middleware/validators/userValidator.middleware');
 
 router.post('/emailverify', validateEmail, awaitHandlerFactory(userController.verifyEmail)); 
-router.post('/register', createUserSchema , awaitHandlerFactory(userController.userSignup));
+router.post('/signup', createUserSchema , awaitHandlerFactory(userController.userSignup));
 router.post('/login', validateLogin, awaitHandlerFactory(userController.userLogin));
 router.post('/', createUserSchema, awaitHandlerFactory(userController.createUser)); 
 router.get('/', auth(Role.Super), awaitHandlerFactory(userController.getAllUsers));

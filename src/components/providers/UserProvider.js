@@ -24,7 +24,8 @@ function UserProvider(props) {
   const wallet = new Wallet();
 
   const userRegister = (requestData)=>{
-    axios.post(SERVER_URL+"users/signup",requestData)
+    let url = 'http://127.0.0.1:5000/api/users/register';
+    axios.post(url,requestData)
             .then(response=>{
                 if(response.data.response){
                   openNotification(t('Success'),t("Account successfully created!"),true,goWalletMain)
@@ -45,6 +46,8 @@ function UserProvider(props) {
     return axios.post(SERVER_URL+"users/emailverify",requestData)
                     .then(response=>{
                       if(response.data.response){
+                        console.log('responce........');
+                        console.log(response);
                         openNotification(t('Success'),t("E-mail sent successfully"),true,null)
 
                       }
@@ -54,7 +57,8 @@ function UserProvider(props) {
                     });
   }
   const login = (requestData)=>{
-    axios.post(SERVER_URL+"users/login",requestData)
+    let url = 'http://127.0.0.1:5000/api/users/login';
+    axios.post(url,requestData)
           .then(response=>{
             if(response.data.response){  
               localStorage.setItem("userInfo", JSON.stringify(response.data.data.userInfo));
